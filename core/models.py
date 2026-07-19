@@ -15,7 +15,7 @@ class WorkExperience(BaseModel):
 class Education(BaseModel):
     institution: str
     degree: str
-    field: str
+    field: Optional[str] = None
     start_date: str
     end_date: Optional[str] = None
     grade: Optional[str] = None
@@ -24,7 +24,7 @@ class Education(BaseModel):
 
 class Project(BaseModel):
     name: str
-    description: str
+    description: Optional[str] = None
     technologies: list[str]
     url: Optional[str] = None
     highlights: list[str]
@@ -49,6 +49,6 @@ class CandidateProfile(BaseModel):
     experience: list[WorkExperience]
     education: list[Education]
     projects: list[Project]
-    publications: Optional[Publication] = []
+    publications: list[Publication] = []
     github_username: Optional[str] = None
     linkedin_url: Optional[str] = None
