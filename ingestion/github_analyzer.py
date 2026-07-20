@@ -10,7 +10,8 @@ def fetch_repos(username: str) -> list[dict]:
     response.raise_for_status() # Raise an exception for bad status codes
     repos = response.json()
     # print(json.dumps(repos, indent=2))
-    return json.dumps(repos, indent=2)
+    # return json.dumps(repos, indent=2)
+    return repos
 
 def fetch_readme(username: str, repo_name: str) -> str:
     url = f"https://api.github.com/repos/{username}/{repo_name}/readme"
@@ -24,20 +25,29 @@ def fetch_readme(username: str, repo_name: str) -> str:
     return readme
 
 def analyze_github(username: str) -> dict:
-    repos = fetch_repos(username=username)
-    parsed_repos = json.loads(repos)
-    print(f"Total repositories fetched: {len(parsed_repos)}")
+    parsed_repos = fetch_repos(username=username)
+    # parsed_repos = json.loads(repos)
+    # print(f"Total repositories fetched: {len(parsed_repos)}")
     summaries = []
-    for i in range(len(parsed_repos)):
-        summary = {}
-        summary['name'] = parsed_repos[i].get('name')
-        summary['description'] = parsed_repos[i].get('description')
-        summary['language'] = parsed_repos[i].get('language')
-        summary['stars'] = parsed_repos[i].get('stargazers_count')
-        summary['topics'] = parsed_repos[i].get('topics')
-        summary['readme'] = fetch_readme(username=username, repo_name=summary['name'])
+    # for i in range(len(parsed_repos)):
+    #     summary = {}
+    #     summary['name'] = parsed_repos[i].get('name')
+    #     summary['description'] = parsed_repos[i].get('description')
+    #     summary['language'] = parsed_repos[i].get('language')
+    #     summary['stars'] = parsed_repos[i].get('stargazers_count')
+    #     summary['topics'] = parsed_repos[i].get('topics')
+    #     summary['readme'] = fetch_readme(username=username, repo_name=summary['name'])
+    #     summaries.append(summary)
+    for repo in parsed_repos:
+        summary = {
+            "name": repo.get("name"),
+            "description": repo.get("description"),
+            "language": repo.get("language"),
+            "stars": repo.get("stargazers_count"),
+            "topics": repo.get("topics"),
+            "readme": fetch_readme(username, repo.get("name")),
+        }
         summaries.append(summary)
-    
 
     messages = [
     {
@@ -81,4 +91,5 @@ def analyze_github(username: str) -> dict:
     )
     content = response.choices[0].message.content
     data = json.loads(content)
-    print(data)
+    # print(data)
+    return data
