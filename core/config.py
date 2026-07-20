@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     groq_api_key: str =  ""
     groq_base_url: str = "https://api.groq.com/openai/v1"
     groq_chat_model: str = 'openai/gpt-oss-20b'
+    github_token: str = ""
     class Config:
         env_file = '.env'
 
