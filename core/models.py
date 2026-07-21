@@ -52,3 +52,20 @@ class CandidateProfile(BaseModel):
     publications: list[Publication] = []
     github_username: Optional[str] = None
     linkedin_url: Optional[str] = None
+
+class JobListing(BaseModel):
+    id: Optional[str] = None
+    title: str
+    company: str
+    location: str
+    description: str
+    url: str
+    salary_min: Optional[float] = 0.0
+    salary_max: Optional[float] = 0.0
+    contracr_type: Optional[str] = None
+    date_posted: Optional[str] = None
+    source: str = 'manual'
+    saved_at: str = ""
+    required_skills: list[str] = []
+    tech_stack: list[str] = []
+    experience_level: Optional[str] = None
