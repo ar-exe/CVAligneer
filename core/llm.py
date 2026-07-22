@@ -21,7 +21,13 @@ def get_chat_model() -> str:
         return settings.groq_chat_model
     return settings.openai_chat_model
 
+def get_ollama_client() -> OpenAI:
+    return OpenAI(
+                base_url=settings.ollama_base_url,
+                api_key='ollama',
+            )
+
 def get_embedding_model() -> str:
-    if settings.llm_provider == 'ollama':
+    if settings.emb_model_provider == 'ollama':
         return settings.ollama_embedding_model
     return settings.openai_embedding_model
