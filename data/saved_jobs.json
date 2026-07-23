@@ -1,0 +1,45 @@
+[
+  {
+    "id": null,
+    "title": "AI/ML Developer Level II",
+    "company": "TP",
+    "location": "Qesm El Maadi, Cairo, Egypt",
+    "description": "We're looking for an experienced AI/ML Developer Level II to join our growing engineering team. If you're passionate about Conversational AI, Natural Language Processing (NLP), and building enterprise-grade virtual assistants, this is an exciting opportunity to work with cutting-edge AI technologies in a collaborative and innovative environment.",
+    "url": "https://www.linkedin.com/jobs/view/4435584134/",
+    "salary_min": null,
+    "salary_max": null,
+    "contracr_type": null,
+    "date_posted": null,
+    "source": "linkedin",
+    "saved_at": "2026-07-23T16:23:09.795789",
+    "required_skills": [
+      "Python",
+      "RASA",
+      "Google Cloud Platform (GCP)",
+      "scikit-learn",
+      "spaCy",
+      "Transformers",
+      "Git"
+    ],
+    "tech_stack": [
+      "RASA",
+      "Python",
+      "Google Cloud Platform (GCP)",
+      "Google Cloud Kubernetes Engine (GKE",
+      "Cloud Run",
+      "Cloud Storage",
+      "Cloud Build",
+      "IAM",
+      "Vertex AI",
+      "Dialogflow",
+      "Docker",
+      "Kubernetes",
+      "Terraform",
+      "scikit-learn",
+      "spaCy",
+      "Transformers",
+      "BigQuery"
+    ],
+    "experience_level": "mid-senior"
+  }
+]

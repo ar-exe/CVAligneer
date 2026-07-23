@@ -1,0 +1,38 @@
+[
+  {
+    "id": null,
+    "title": "AI Engineer, Entry Level (Canada)",
+    "company": "Jobright.ai",
+    "location": "Canada",
+    "description": "Jobright is a rapidly growing AI job search platform in the U.S. that is dedicated to transforming the job search experience. They are seeking an entry-level AI Engineer to build and refine autonomous AI agents, develop sophisticated prompt engineering workflows, and integrate Large Language Models into their application. Responsibilities include building and refining autonomous AI agents that interact with complex environments to solve real-world user problems; developing and optimizing sophisticated prompt engineering workflows and multi-agent orchestration frameworks; integrating Large Language Models (LLMs) into the Jobright application, ensuring high-quality, low-latency, and reliable AI responses; working at the intersection of product and engineering to transform user requirements into functional AI-driven features; implementing Retrieval-Augmented Generation (RAG) systems and fine-tuning models to improve accuracy and context-awareness of our agents. Qualification requires a recent graduate or entry-level professional (0\u20132 years of experience) with a degree in Computer Science, AI, or a related technical field; strong proficiency in Python and experience working with LLM APIs such as OpenAI, Anthropic, or open-source models via Hugging Face; practical understanding of agentic workflows, prompt chaining, and the latest trends in generative AI; solid software engineering foundations including a strong grasp of APIs, asynchronous programming, and version control (Git). Preferred experience includes previous internship or personal project building AI-powered applications, chatbots, or autonomous agents; familiarity with agent frameworks such as LangChain, AutoGPT, or CrewAI; experience with vector databases and semantic search implementation; basic understanding of front-end or full-stack integration to help bridge the gap between AI logic and user interfaces.",
+    "url": "https://www.linkedin.com/jobs/view/4441362517/",
+    "salary_min": null,
+    "salary_max": null,
+    "contracr_type": null,
+    "date_posted": null,
+    "source": "linkedin",
+    "saved_at": "2026-07-23T09:13:26.603473",
+    "required_skills": [
+      "Python",
+      "LLM APIs",
+      "agentic workflows",
+      "prompt chaining",
+      "generative AI",
+      "APIs",
+      "asynchronous programming",
+      "Git"
+    ],
+    "tech_stack": [
+      "OpenAI",
+      "Anthropic",
+      "Hugging Face",
+      "LangChain",
+      "AutoGPT",
+      "CrewAI",
+      "vector databases",
+      "semantic search",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "experience_level": "junior"
+  }
+]

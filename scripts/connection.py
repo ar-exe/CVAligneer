@@ -12,8 +12,12 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 from psycopg2.pool import ThreadedConnectionPool
 from core.config import settings
-_pool = ThreadedConnectionPool(minconn=1, maxconn=10, dsn=settings.supabase_url)
-
+_pool = ThreadedConnectionPool(
+    minconn=1,
+    maxconn=10,
+    dsn=settings.supabase_url,
+    options="-c statement_timeout=60s"
+)
 
 
 def get_connection():
