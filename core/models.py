@@ -69,3 +69,15 @@ class JobListing(BaseModel):
     required_skills: list[str] = []
     tech_stack: list[str] = []
     experience_level: Optional[str] = None
+
+class GapAnalysis(BaseModel):
+    job_title: str
+    company: str
+    similarity_score: float
+    overall_fit: str
+    matching_skills: list[str]
+    missing_skills: list[str]
+    cv_improvements: list[str]
+    talking_points: list[str]
+    recommendation: str
+
