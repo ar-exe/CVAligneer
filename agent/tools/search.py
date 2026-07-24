@@ -1,9 +1,13 @@
 from langchain_core.tools import tool
 from core.config import settings
-from langchain_community.tools import DuckDuckGoSearchRun
+from agent.tools.openserp import OpenSERPClient
+
+
+serp_client = OpenSERPClient(settings.open_serp_url)
+
 
 @tool
 def web_search(query: str) -> str:
-    search = DuckDuckGoSearchRun()
-    result = search.invoke('Top AI Research Papers Ever 2026')
+    """Search the web for information about a company, person, or technology."""
+    result = serp_client.search_for_agents(query)
     return result
