@@ -18,6 +18,8 @@ class Settings(BaseSettings):
     adzuna_api_key: str = ""
     supabase_url: str = ""
     supabase_key: str = ""
+    open_serp_url: str = ""
+    serpapi_key: str = ""
     class Config:
         env_file = Path(__file__).resolve().parents[1] / ".env"
 

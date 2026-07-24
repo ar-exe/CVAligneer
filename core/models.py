@@ -81,3 +81,15 @@ class GapAnalysis(BaseModel):
     talking_points: list[str]
     recommendation: str
 
+class CompanyBrief(BaseModel):
+    company: str
+    what_they_build: str
+    real_tech_stack: list[str]
+    culture_signals: list[str]
+    engineering_blog_url: Optional[str]
+    notable_engineers: list[str]
+    talking_points: list[str]
+    red_flags: Optional[list[str]]
+    brief_summary: str
+    sources_consulted: list[str]
+    
