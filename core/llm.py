@@ -7,6 +7,7 @@ def get_llm_client() -> OpenAI:
         return OpenAI(
             base_url=settings.ollama_base_url,
             api_key='ollama',
+            timeout=600.0,
         )
     elif settings.llm_provider == 'openai':
         return OpenAI(api_key=settings.openai_api_key)

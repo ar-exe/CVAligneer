@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings
 from pathlib import Path
 
 class Settings(BaseSettings):
-    llm_provider: str = 'ollama'
+    llm_provider: str = 'openrouter'
     ollama_base_url: str = "http://192.168.1.4:11434/"
     ollama_chat_model: str = "qwen3.5:9b"
     emb_model_provider: str = "ollama"

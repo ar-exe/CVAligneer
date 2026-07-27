@@ -201,12 +201,26 @@ def parse_cv(pdf_path: str) -> CandidateProfile:
         model=get_chat_model(),
         response_format={"type": "json_object"},
         messages=messages,
-            max_tokens=500,
+        # max_tokens=500,
 
     )
 
     content = response.choices[0].message.content
-    raw = json.loads(content)
+    content = response.choices[0].message.content
+
+    print("=== LLM Response OBJECT ===")
+    print(response)
+    print("=== LLM Response .choices ===")
+    print(getattr(response, "choices", None))
+    print("=== LLM Content (repr) ===")
+    print(repr(content))
+    print(content)
+    try:
+        raw = json.loads(content)
+    except json.JSONDecodeError as exc:
+        raise ValueError(
+            f"CV parser returned invalid JSON: {exc}. Response content: {content!r}"
+        ) from exc
 
     normalized = _normalize_cv_payload(raw)
     try:
