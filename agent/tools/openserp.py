@@ -1,9 +1,10 @@
 import requests
 from typing import Any
-
+import httpx
 import requests
 from typing import Any
-
+import requests
+from requests.exceptions import HTTPError
 
 class OpenSERPClient:
 
@@ -15,24 +16,16 @@ class OpenSERPClient:
         self.base_url = base_url.rstrip("/")
         self.timeout = timeout
 
-    def search(
-        self,
-        query: str,
-        engine: str = "bing",
-        limit: int = 10,
-    ) -> dict[str, Any]:
-
+    def search(self, query: str, engine: str = "bing", limit: int = 10) -> dict[str, Any]:
         response = requests.get(
             f"{self.base_url}/{engine}/search",
-            params={
-                "text": query,
-                "limit": limit,
-            },
+            params={"text": query, "limit": limit},
             timeout=self.timeout,
         )
-
-        response.raise_for_status()
-
+        try:
+            response.raise_for_status()
+        except HTTPError:
+            return {"results": []}
         return response.json()
 
     def _normalize_search_results(
@@ -99,3 +92,49 @@ class OpenSERPClient:
         )
         results = self._normalize_search_results(response, max_results=limit)
         return self._format_search_results(results)
+    def _format_organic_results(self, data: dict, limit: int = 10) -> str:
+        results = []
+
+        for item in data.get("results", []):
+            if item.get("type") != "organic":
+                continue
+
+            title = item.get("title")
+            url = item.get("url")
+            snippet = item.get("snippet", "")
+
+            if title and url:
+                results.append(f"- {title}\n  {url}\n  {snippet}")
+
+            if len(results) >= limit:
+                break
+
+        return "\n".join(results) if results else "No results found."
+
+    def search_linkedin_profiles_by_company(
+        self,
+        company_name: str,
+        role: str = "",
+        limit: int = 10,
+    ) -> str:
+        query = f'site:linkedin.com/in/ "{company_name}"'
+
+        if role:
+            query += f' "{role}"'
+
+        data = self.search(query=query, limit=limit)
+        return self._format_organic_results(data, limit=limit)
+
+    def search_linkedin_profiles_by_title(
+        self,
+        role: str,
+        location: str = "",
+        limit: int = 10,
+    ) -> str:
+        query = f'site:linkedin.com/in/ "{role}"'
+
+        if location:
+            query += f' "{location}"'
+
+        data = self.search(query=query, limit=limit)
+        return self._format_organic_results(data, limit=limit)
