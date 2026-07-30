@@ -25,7 +25,7 @@ def get_candidate_emb(candidate: CandidateProfile) -> list[float]:
     put_connection(conn)
     return d
 
-def rank_jobs_for_candidate(candidate: CandidateProfile, top_k: int) -> list[dict]:
+def rank_jobs_for_candidate(candidate: CandidateProfile, top_k: int = 10) -> list[dict]:
     conn = get_connection()
     candidate_emb = get_candidate_emb(candidate)
     results = []

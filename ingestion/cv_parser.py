@@ -198,23 +198,30 @@ def parse_cv(pdf_path: str) -> CandidateProfile:
     ]
 
     response = client.chat.completions.create(
-        model=get_chat_model(),
-        response_format={"type": "json_object"},
-        messages=messages,
-        # max_tokens=500,
+    model=get_chat_model(),
+    response_format={"type": "json_object"},
+    messages=messages,
+)
 
-    )
+    # defensive normalization
+    choices = getattr(response, "choices", None) or (response.get("choices") if isinstance(response, dict) else None)
+    if not choices:
+        raise RuntimeError(f"LLM returned no choices. Full response: {response!r}")
 
-    content = response.choices[0].message.content
-    content = response.choices[0].message.content
+    choice = choices[0]
+    # support multiple response shapes
+    content = None
+    msg = getattr(choice, "message", None) or (choice.get("message") if isinstance(choice, dict) else None)
+    if msg:
+        content = getattr(msg, "content", None) or (msg.get("content") if isinstance(msg, dict) else None)
+    else:
+        content = getattr(choice, "text", None) or (choice.get("text") if isinstance(choice, dict) else None)
 
-    print("=== LLM Response OBJECT ===")
-    print(response)
-    print("=== LLM Response .choices ===")
-    print(getattr(response, "choices", None))
-    print("=== LLM Content (repr) ===")
-    print(repr(content))
-    print(content)
+    if not content or not isinstance(content, str):
+        raise RuntimeError(f"LLM choice has no text/message content. Choice: {choice!r}")
+
+    # continue as before
+    raw = json.loads(content)
     try:
         raw = json.loads(content)
     except json.JSONDecodeError as exc:

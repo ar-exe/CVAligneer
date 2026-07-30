@@ -3,7 +3,7 @@ from pathlib import Path
 
 class Settings(BaseSettings):
     llm_provider: str = 'openrouter'
-    ollama_base_url: str = "http://192.168.1.4:11434/"
+    ollama_base_url: str = "http://192.168.1.9:11434/"
     ollama_chat_model: str = "qwen3.5:9b"
     emb_model_provider: str = "ollama"
     ollama_embedding_model: str = "nomic-embed-text:latest"
@@ -23,8 +23,8 @@ class Settings(BaseSettings):
     serpapi_key: str = ""
     openrouter_api_key: str = ""
     openrouter_base_url: str = "https://openrouter.ai/api/v1"
-    openrouter_chat_model: str = "nvidia/nemotron-3-ultra-550b-a55b:free"
-    # openrouter_chat_model: str = "google/gemma-4-26b-a4b-it:free"
+    # openrouter_chat_model: str = "nvidia/nemotron-3-ultra-550b-a55b:free"
+    openrouter_chat_model: str = "google/gemma-4-26b-a4b-it:free"
     class Config:
         env_file = Path(__file__).resolve().parents[1] / ".env"
 

@@ -37,7 +37,7 @@ class Publication(BaseModel):
     title: str
     venue: str
     year: int
-    summary: str
+    summary: Optional[str] = None
     url: Optional[str] = None
 
 

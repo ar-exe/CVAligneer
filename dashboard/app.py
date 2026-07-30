@@ -13,7 +13,12 @@ from core.database import save_candidate_profile, save_job_listing, load_all_job
 from dashboard.state import init_session_state
 from ingestion.job_ingestor import ingest_job_from_url
 import tempfile
-
+from core.config import settings
+st.sidebar.write({
+  "emb_model_provider": settings.emb_model_provider,
+  "ollama_base_url": settings.ollama_base_url,
+  "openai_api_key_set": bool(settings.openai_api_key),
+})
 init_session_state()
 
 st.set_page_config(
@@ -70,7 +75,7 @@ with st.sidebar:
     else:
         st.warning("Upload your CV to get started")
 
-if st.session_state.profile_ready is False:
+if st.session_state.profile_ready is True:
 
     with st.container():
         st.subheader("Profile Summary")
@@ -80,4 +85,8 @@ if st.session_state.profile_ready is False:
             st.write(", ".join(parsed_cv.skills))
         with col2:
             st.write("**Experiences**")
-            st.write(", ".join(parsed_cv.experience))
+            exp_strings = [
+                f"{e.role} at {e.company} ({e.start_date or ''} - {e.end_date or 'present'})"
+                for e in parsed_cv.experience
+            ]
+            st.write(", ".join(exp_strings) or "No experiences listed")
