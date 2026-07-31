@@ -2,8 +2,6 @@
 
 An end-to-end AI engineering system that matches your CV to jobs semantically, identifies exact skill gaps, and autonomously researches target companies using a multi-tool LangGraph agent.
 
-Built as a real portfolio project — not a tutorial clone.
-
 ---
 
 ## Demo
